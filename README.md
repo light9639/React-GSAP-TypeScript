@@ -535,3 +535,6 @@ const FourCircles = styled(FirstCircles)`
     margin-right: 0;
 `
 ```
+## 📎 출처
+- <a href="https://velog.io/@wlsdnjs156/React-gsap%EC%88%9C%EC%B0%A8%EC%A0%81-%EC%97%90%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98">React - gsap(순차적 에니메이션)</a>
+- <a href="https://wazacs.tistory.com/38">React 에서 애니메이션, 인터렉션 구축하기 (emotion / tweenmax)</a>
