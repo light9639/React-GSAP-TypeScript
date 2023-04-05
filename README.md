@@ -225,6 +225,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 ```
 
 ### ⚡ Header.tsx
+- 맨 상단에 `react-router-dom`의 `Link`를 사용하여 페이지 전환이 가능하도록 작성한다.
 ```typescript
 /** @jsxImportSource @emotion/react */
 import React from 'react'
@@ -275,9 +276,10 @@ const HeaderCSS = css`
 `
 ```
 ## ✒️ Gsap 파일 Emotion.tsx, Text.tsx, Move.tsx, Emotion.styled.ts 수정 및 작성
-- Gsap 파일을 이용하여 제작한 3가지 파일을 작성하는 방법입니다.
+- `GSAP`의 여러 기능을 이용하여 제작한 3가지 애니메이션 예제 파일 작성법입니다.
 ### ⚡ Emotion.tsx
 - `/** @jsxImportSource @emotion/react */`를 선언하여 `typescipt`에서 `emotion`을 사용할 때 오류가 나지 않도록 한다.
+- 밑에 있는 `Emotion.styled.ts`파일에서 여러 변수들을 `import`하여 사용한다.
 ```typescript
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
@@ -294,138 +296,10 @@ export default function Emotion(): JSX.Element {
     )
 }
 ```
-### ⚡ Text.tsx
-```typescript
-import React, { useRef, useLayoutEffect } from 'react'
-import { gsap } from "gsap";
-import styled from "@emotion/styled";
-
-export default function Text(): JSX.Element {
-    const root = useRef() as React.MutableRefObject<HTMLDivElement>;
-
-    useLayoutEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.to(".box1", { rotation: "+=360", duration: "3" });
-            gsap.to(".box2", { rotation: "+=720", duration: "3" });
-            gsap.to(".box3", { rotation: "+=1080", duration: "3" });
-            gsap.to(".box4", { rotation: "+=1440", duration: "3" });
-        }, root);
-
-        return () => ctx.revert();
-    }, []);
-
-    return (
-        <TextWrapper ref={root}>
-            <FirstText className="box1">First</FirstText>
-            <SecondText className="box2">Second</SecondText>
-            <ThirdText className="box3">Third</ThirdText>
-            <FourText className="box4">Four</FourText>
-        </TextWrapper>
-    )
-}
-
-const TextWrapper = styled.div`
-    display: flex;
-    margin-left: 30px;
-`
-
-const FirstText = styled.div`
-    width: 150px;
-    height: 150px;
-    font-size: 20px;
-    background-image: linear-gradient(135deg, #f83600 0%, #f9d423 100%);
-    border-radius: 50%;
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 15px 50px 0px;
-`
-
-const SecondText = styled(FirstText)`
-    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
-`
-
-const ThirdText = styled(FirstText)`
-    background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%);
-`
-
-const FourText = styled(FirstText)`
-    background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
-    margin-right: 0;
-`
-```
-### ⚡ Move.tsx
-```typescript
-/** @jsxImportSource @emotion/react */
-import React from "react"
-import { Timeline, Tween } from "react-gsap"
-import { css, jsx } from '@emotion/react'
-import styled from "@emotion/styled";
-
-export default function Move(): JSX.Element {
-    return (
-        <div css={Wrapper}>
-            <Timeline target={<FirstCircles>First</FirstCircles>}>
-                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
-                <Tween to={{ x: "125%" }} duration={2} />
-            </Timeline>
-
-            <Timeline target={<SecondCircles>Second</SecondCircles>}>
-                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
-                <Tween to={{ x: "-125%" }} duration={2} />
-            </Timeline>
-
-            <Timeline target={<ThirdCircles>Third</ThirdCircles>}>
-                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
-                <Tween to={{ y: "-100%" }} duration={2} />
-            </Timeline>
-
-            <Timeline target={<FourCircles>Four</FourCircles>}>
-                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
-                <Tween to={{ y: "100%" }} duration={2} />
-            </Timeline>
-        </div>
-    )
-}
-
-const Wrapper = css`
-    display: flex;
-    justify-content: center;
-    margin-top: 125px;
-`
-
-const FirstCircles = styled.div`
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    background-image: linear-gradient(135deg, #f83600 0%, #f9d423 100%);
-    margin: 15px;
-`
-
-const SecondCircles = styled(FirstCircles)`
-    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
-`
-
-const ThirdCircles = styled(FirstCircles)`
-    background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%);
-`
-
-const FourCircles = styled(FirstCircles)`
-    background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
-    margin-right: 0;
-`
-```
 ### ⚡ Emotion.styled.ts
+- `@emotion/react`에서 `keyframes`을 사용하여 4가지 애니메이션을 제작한다.
+- 4가지 애니메이션은 위아래로 움직이는 애니메이션이며, 각각의 움직임을 다르게 설정하였다.
+- 이후 전체적인 페이지와 원의 스타일링을 한 후 `styled(FirstStyle)`을 원의 속성을 공유하도록 한다.
 ```typescript
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from '@emotion/react'
@@ -525,6 +399,139 @@ export const ThirdText = styled(FirstStyle)`
 export const FourText = styled(FirstStyle)`
     background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
     animation: ${floating4} 3s ease infinite;
+    margin-right: 0;
+`
+```
+### ⚡ Text.tsx
+- 이 페이지에서는 각각의 원이 몇바퀴를 돌아가는지를 만든 4가지 애니메이션 페이지이다.
+```typescript
+import React, { useRef, useLayoutEffect } from 'react'
+import { gsap } from "gsap";
+import styled from "@emotion/styled";
+
+export default function Text(): JSX.Element {
+    const root = useRef() as React.MutableRefObject<HTMLDivElement>;
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.to(".box1", { rotation: "+=360", duration: "3" });
+            gsap.to(".box2", { rotation: "+=720", duration: "3" });
+            gsap.to(".box3", { rotation: "+=1080", duration: "3" });
+            gsap.to(".box4", { rotation: "+=1440", duration: "3" });
+        }, root);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <TextWrapper ref={root}>
+            <FirstText className="box1">First</FirstText>
+            <SecondText className="box2">Second</SecondText>
+            <ThirdText className="box3">Third</ThirdText>
+            <FourText className="box4">Four</FourText>
+        </TextWrapper>
+    )
+}
+
+const TextWrapper = styled.div`
+    display: flex;
+    margin-left: 30px;
+`
+
+const FirstText = styled.div`
+    width: 150px;
+    height: 150px;
+    font-size: 20px;
+    background-image: linear-gradient(135deg, #f83600 0%, #f9d423 100%);
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 15px 50px 0px;
+`
+
+const SecondText = styled(FirstText)`
+    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+`
+
+const ThirdText = styled(FirstText)`
+    background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%);
+`
+
+const FourText = styled(FirstText)`
+    background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
+    margin-right: 0;
+`
+```
+### ⚡ Move.tsx
+- 이 페이지에서는 각각의 원이 상하좌우로 이동하도록 만든 애니메이션 페이지이다.
+```typescript
+/** @jsxImportSource @emotion/react */
+import React from "react"
+import { Timeline, Tween } from "react-gsap"
+import { css, jsx } from '@emotion/react'
+import styled from "@emotion/styled";
+
+export default function Move(): JSX.Element {
+    return (
+        <div css={Wrapper}>
+            <Timeline target={<FirstCircles>First</FirstCircles>}>
+                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
+                <Tween to={{ x: "125%" }} duration={2} />
+            </Timeline>
+
+            <Timeline target={<SecondCircles>Second</SecondCircles>}>
+                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
+                <Tween to={{ x: "-125%" }} duration={2} />
+            </Timeline>
+
+            <Timeline target={<ThirdCircles>Third</ThirdCircles>}>
+                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
+                <Tween to={{ y: "-100%" }} duration={2} />
+            </Timeline>
+
+            <Timeline target={<FourCircles>Four</FourCircles>}>
+                <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2} />
+                <Tween to={{ y: "100%" }} duration={2} />
+            </Timeline>
+        </div>
+    )
+}
+
+const Wrapper = css`
+    display: flex;
+    justify-content: center;
+    margin-top: 125px;
+`
+
+const FirstCircles = styled.div`
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-image: linear-gradient(135deg, #f83600 0%, #f9d423 100%);
+    margin: 15px;
+`
+
+const SecondCircles = styled(FirstCircles)`
+    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+`
+
+const ThirdCircles = styled(FirstCircles)`
+    background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%);
+`
+
+const FourCircles = styled(FirstCircles)`
+    background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
     margin-right: 0;
 `
 ```
