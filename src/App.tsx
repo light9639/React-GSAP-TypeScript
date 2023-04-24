@@ -12,7 +12,7 @@ export default function App(): JSX.Element {
     <div className="App">
       <Header></Header>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
+        <a href="https://greensock.com/gsap/" target="_blank">
           <img src="https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg" className="logo" alt="Vite logo" />
         </a>
         <a href="https://reactjs.org" target="_blank">
