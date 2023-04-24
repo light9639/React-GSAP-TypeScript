@@ -260,7 +260,7 @@ Error generating stack: `+o.message+`
     background-image: linear-gradient(to top, #0fd850 0%, #f9f047 100%);
     animation: ${IC} 3s ease infinite;
     margin-right: 0;
-`;function bC(){return xo("div",{css:$C,children:[wt(Kc,{children:"First"}),wt(UC,{children:"Second"}),wt(jC,{children:"Third"}),wt(BC,{children:"Four"})]})}function VC(){return Pe.jsxs("div",{className:"App",children:[Pe.jsx(NC,{}),Pe.jsxs("div",{children:[Pe.jsx("a",{href:"https://vitejs.dev",target:"_blank",children:Pe.jsx("img",{src:"https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg",className:"logo",alt:"Vite logo"})}),Pe.jsx("a",{href:"https://reactjs.org",target:"_blank",children:Pe.jsx("img",{src:Xx,className:"logo react",alt:"React logo"})})]}),Pe.jsxs(CC,{children:[Pe.jsx(Pu,{path:"/",element:Pe.jsx(C2,{})}),Pe.jsx(Pu,{path:"Move",element:Pe.jsx(y2,{})}),Pe.jsx(Pu,{path:"Emotion",element:Pe.jsx(bC,{})})]})]})}const WC=ya`
+`;function bC(){return xo("div",{css:$C,children:[wt(Kc,{children:"First"}),wt(UC,{children:"Second"}),wt(jC,{children:"Third"}),wt(BC,{children:"Four"})]})}function VC(){return Pe.jsxs("div",{className:"App",children:[Pe.jsx(NC,{}),Pe.jsxs("div",{children:[Pe.jsx("a",{href:"https://greensock.com/gsap/",target:"_blank",children:Pe.jsx("img",{src:"https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg",className:"logo",alt:"Vite logo"})}),Pe.jsx("a",{href:"https://reactjs.org",target:"_blank",children:Pe.jsx("img",{src:Xx,className:"logo react",alt:"React logo"})})]}),Pe.jsxs(CC,{children:[Pe.jsx(Pu,{path:"/",element:Pe.jsx(C2,{})}),Pe.jsx(Pu,{path:"Move",element:Pe.jsx(y2,{})}),Pe.jsx(Pu,{path:"Emotion",element:Pe.jsx(bC,{})})]})]})}const WC=ya`
   * {
     margin: 0;
     padding: 0;
